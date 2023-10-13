@@ -1,0 +1,60 @@
+<div class="nav-bar">
+    <div class="container">
+        <div class="nav-bar-container">
+            <a href="" class="logo">
+                <img src="" alt="" />
+            </a>
+            <div class="nav-bar-menu">
+                <div class="overlay"></div>
+                <div class="nav-bar-links">
+                    <div class="nav-bar-menu-header">
+                        <a class="nav-bar-menu-close ms-auto">
+                            <i class="fa fa-times"></i>
+                        </a>
+                    </div>
+                    <!-- @foreach ($navbarMenuLinks as $navbarMenuLink)
+                        @if ($navbarMenuLink->children->count() > 0) -->
+                            <div class="drop-down" data-dropdown data-dropdown-position="top">
+                                <div class="drop-down-btn">
+                                    <span></span>
+                                    <i class="fa fa-angle-down ms-2"></i>
+                                </div>
+                                <div class="drop-down-menu">
+                                    <!-- @foreach ($navbarMenuLink->children as $child) -->
+                                        <a href="" class="drop-down-item">
+                                            <span></span>
+                                        </a>
+                                    <!-- @endforeach -->
+                                </div>
+                            </div>
+                        <!-- @else -->
+                            <a href="" class="link">
+                                <div class="link-title">
+                                    <span></span>
+                                </div>
+                            </a>
+                        <!-- @endif -->
+                    <!-- @endforeach -->
+                    <!-- @guest -->
+                        <a href="" class="link-btn">
+                            <button class="btn btn-secondary">Sign In</button>
+                        </a>
+                        <!-- @if ($settings->actions->registration_status) -->
+                            <a href="" class="link-btn">
+                                <button class="btn btn-primary">Sign Up</button>
+                            </a>
+                        <!-- @endif
+                    @endguest -->
+                </div>
+            </div>
+            <div class="nav-bar-actions">
+                <!-- @auth
+                    @include('partials.user-menu')
+                @endauth -->
+                <div class="nav-bar-menu-btn">
+                    <i class="fa-solid fa-bars-staggered fa-lg"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

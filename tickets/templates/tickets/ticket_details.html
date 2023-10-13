@@ -1,0 +1,128 @@
+
+{% extends 'base.html' %}
+{% load humanize %}
+{% block 'title' %}Ticket Detail{% endblock 'title' %}
+
+{% block 'content' %}
+
+  <div class="container my-5">
+
+      <div class="row bootstrap snippets">
+          <div class="col-md-4 col-md-offset-2 col-sm-8">
+              <div class="comment-wrapper">
+                  <div class="panel panel-info">
+                      <div class="panel-heading"><h4>Détails du Ticket</h4></div>
+                      <div class="panel-body">
+                        <div class="card card-signin  py-4 px-4" style="margin-top: 40px;">
+                            <hr>
+                            <div class="subject">
+                                <strong>Ticket N° : #00{{ ticket_msgs.0.ticket.id }}</strong> <br>
+                                <small>Créé par : {{ created_by.get_full_name }}</small><br>
+                                <small>Créé le : {{ticket_msgs.0.ticket.created_on|date:"d-m-y à H:i"}} </small>
+                                <br><hr>
+                                <strong>Objet :</strong>
+                                <p class="ml-4">{{ ticket_msgs.0.ticket.subject }}</p><hr>
+                                <strong>Description:</strong>
+                                <p class="ml-4">{{ ticket_msgs.0.ticket.description }}</p>
+                            </div>
+                        </div>
+                         
+                      </div>
+                  </div>
+              </div>
+          </div>
+        <div class="col-md-8 col-sm-12">
+            <div class="comment-wrapper">
+                <div class="panel panel-info">
+                    <div class="panel-heading">
+                        <h4 style="text-align: center;">Messages</h4>
+                    </div>
+                    <div class="card card-signin  py-4 px-4" style="margin-top: 40px;">
+                        <div class="panel-body">
+                            <hr>
+                            <ul class="media-list">
+                                {% for msg in ticket_msgs %}
+                                {% if msg.published_by == 'user' %}
+                                <li class="media">
+                                    <a href="#" class="float-left">
+                                        <img src="https://bootdey.com/img/Content/user_1.jpg" alt="" class="rounded-circle">
+                                    </a>
+                                    <div class="media-body pl-2">
+                                        <span class="text-muted float-right">
+                                            <small class="text-muted">{{ msg.published_at|naturaltime }}</small>
+                                        </span>
+                                        <strong class="text-success">{{ created_by.get_full_name }}</strong>
+                                        <p>
+                                           {{ msg.message }}
+                                        </p>
+                                        {% if msg.image %}
+                                            <p>Fichier Attaché: <a href="{{ msg.image.url }}" download>{{ msg.image.name }}</a></p>
+                                        {% endif %}
+                                    </div>
+                                </li>
+                                {% else %}
+                                <li class="media">
+                                    <a href="#" class="float-left">
+                                        <img src="https://bootdey.com/img/Content/user_3.jpg" alt="" class="rounded-circle">
+                                    </a>
+                                    <div class="media-body pl-2">
+                                        <span class="text-muted float-right">
+                                            <small class="text-muted">{{ msg.published_at|naturaltime }}</small>
+                                        </span>
+                                        <strong class="text-success">{{ accepted_by.get_full_name }}</strong>
+                                        <p>
+                                           {{ msg.message }}
+                                        </p>
+                                        {% if msg.image %}
+                                            <p>Fichier Attaché: <a href="{{ msg.image.url }}" download>{{ msg.image.name }}</a></p>
+                                        {% endif %}
+                                    </div>
+                                </li>
+                                {% endif %}
+                             {% endfor %}
+                            </ul>
+                            
+                        </div>
+                    </div>
+
+                    <div class="card card-signin  py-4 px-4" style="margin-top: 40px;">
+                        {% if request.user.is_authenticated %}
+                                {% if ticket_msgs.0.ticket.accepted_by == request.user.email %}
+                                    <form method="POST" action="" enctype="multipart/form-data" >
+                                        {% csrf_token %}
+                                        <textarea class="form-control" name='message' placeholder="Ecrire un méssage ..." rows="3" required></textarea>
+                                        <div class="form-label-group">
+                                            <input type="file" name="image2" id="image2" accept=".gif, .jpg, .png"/>
+                                        <!-- <label for="image">Ajouter une image</label> -->
+                                        </div>
+                                        <br>
+                                        <button type="submit" class="btn btn-info float-right">Envoyer</button>
+                                    
+                                    </form>
+                                {% endif %}
+                                {% if ticket_msgs.0.ticket.created_by == request.user.email %}
+                                    <form method="POST" action="" enctype="multipart/form-data">
+                                        {% csrf_token %}
+                                        <textarea class="form-control"  name='message' placeholder="Ecrire un méssage ..." rows="3" required></textarea>
+                                        <div class="form-label-group">
+                                            <input type="file" name="image2" id="image2" accept=".gif, .jpg, .png"/>
+                                        <!-- <label for="image">Ajouter une image</label> -->
+                                        </div>
+                                        <br>
+                                        <button type="submit" class="btn btn-info float-right">Envoyer</button>
+                                    </form>
+                                {% endif %}
+                            {% endif %}
+                            <div class="clearfix"></div>
+                    </div>
+                    
+                   
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+  </div>
+
+{% endblock 'content' %}

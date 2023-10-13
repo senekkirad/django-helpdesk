@@ -1,0 +1,71 @@
+
+{% extends 'base.html' %}
+
+{% block 'title' %}New Ticket{% endblock 'title' %}
+
+{% block 'content' %}
+
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-xl-7 mx-auto">
+        <div class="card card-signin flex-row my-5">
+          <div class="card-body">
+            <h5 class="card-title text-center">Créer un Ticket</h5>
+            <form class="form-signin" method="POST" action="" enctype="multipart/form-data">
+              {% csrf_token %}
+
+              <div class="form-label-group">
+                <select id="product" name="product" class="browser-default custom-select" required>
+                    <option disabled selected>Choisir le Produit concerné</option>
+                    <option value="1">MASTER DIGIT</option>
+                    <option value="2">kEYLA SHOP</option>
+                    <option value="3">GARAGE DIGIT</option>
+
+                </select>
+
+            </div>
+              <div class="form-label-group">
+                <input type="text" id="subject" name="subject" class="form-control" maxlength="100" placeholder="" required>
+                <label for="subject">Objet</label>
+              </div>
+
+                <div class="form-label-group">
+                    <textarea id="description" name="description" class="form-control"  cols="30" rows="6" maxlength="250" placeholder="" ></textarea>
+                <label for="description">Description</label>
+              </div>
+
+              <div class="form-label-group">
+                  <select id="department" name="department" class="browser-default custom-select" required>
+                      <option disabled selected>Choisir un département</option>
+                      <option value="1">IT</option>
+                      <option value="2">Admin</option>
+                      <option value="3">HR</option>
+                      <option value="4">Maintenance</option>
+                  </select>
+
+              </div>
+
+                <div class="form-label-group">
+                  <select id="priority" name="priority" class="browser-default custom-select"  required>
+                      <option disabled selected>Choisir la Priorité</option>
+                      <option value="1">Urgent</option>
+                      <option value="2">Haut</option>
+                      <option value="3">Normale</option>
+                      <option value="4">Faible</option>
+                  </select>
+
+              </div>
+
+              <div class="form-label-group">
+                  <input type="file" name="image" id="image" accept=".gif, .jpg, .png"/>
+                <!-- <label for="image">Ajouter une image</label> -->
+              </div>
+              <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit" style="background-color: #46b97c;">Soumettre</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+{% endblock 'content' %}
