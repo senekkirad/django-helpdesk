@@ -146,8 +146,8 @@ STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static'),]
 #MEDIA_ROOT=os.path.join(BASE_DIR, 'media')
 
 ## For vercel deployment###
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles_build', 'static')
-MEDIA_ROOT = os.path.join(BASE_DIR, 'staticfiles_build', 'media')
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles', 'static')
+MEDIA_ROOT = os.path.join(BASE_DIR, 'staticfiles', 'media')
 
 
 
