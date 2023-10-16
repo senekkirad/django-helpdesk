@@ -1,13 +1,13 @@
 {
     "builds": [{
-        "src": "djangoHelpdesk/djangoHelpdesk/wsgi.py",
+        "src": "djangoHelpdesk/wsgi.py",
         "use": "@vercel/python",
         "config": { "maxLambdaSize": "15mb", "runtime": "python3.9" }
     }],
     "routes": [
         {
             "src": "/(.*)",
-            "dest": "djangoHelpdesk/djangoHelpdesk/wsgi.py"
+            "dest": "djangoHelpdesk/wsgi.py"
         }
     ]
 }
