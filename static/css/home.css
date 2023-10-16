@@ -170,3 +170,9 @@ input[type=file]::file-selector-button:hover {
   background: #000;
   color:#fff;
 }
+
+
+
+.carousel-item {
+  height: 50vh;
+}

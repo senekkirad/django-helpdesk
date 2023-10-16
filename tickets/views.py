@@ -88,7 +88,7 @@ def accept_ticket(request, id):
     ticket.accepted_by = request.user.email
     ticket.status = PENDING_STATUS
     ticket.save()
-    send_mail(subject="Ticket #{0}: {1}".format(ticket.id, ticket.subject), message="Ticket has been received and assigned to {0}".format(ticket.accepted_by),
+    send_mail(subject="Ticket #00{0}: {1}".format(ticket.id, ticket.subject), message="Ticket has been received and assigned to {0}".format(ticket.accepted_by),
               from_email=settings.EMAIL_HOST_USER, recipient_list=(ticket.created_by,))
     messages.add_message(request, messages.SUCCESS, 'Ticket is accepted')
     return redirect('list_tickets')
@@ -98,7 +98,7 @@ def ticket_resolved(request, id):
     ticket = Ticket.objects.get(id=id)
     ticket.status = RESOLVED_STATUS
     ticket.save()
-    send_mail(subject="Ticket #{0}: {1}".format(ticket.id, ticket.subject),
+    send_mail(subject="Ticket #00{0}: {1}".format(ticket.id, ticket.subject),
               message="Ticket has been resolved", from_email=settings.EMAIL_HOST_USER, recipient_list=(ticket.created_by,))
     messages.add_message(request, messages.SUCCESS, 'Ticket is resolved')
     return redirect('list_tickets')
@@ -107,7 +107,7 @@ def ticket_resolved(request, id):
 def ticket_close(request, id):
     ticket = Ticket.objects.get(id=id)
     ticket.delete()
-    send_mail(subject="Ticket #{0}: {1}".format(id, ticket.subject),
+    send_mail(subject="Ticket #00{0}: {1}".format(id, ticket.subject),
               message="Ticket has been closed", from_email=settings.EMAIL_HOST_USER, recipient_list=(ticket.created_by,))
     messages.add_message(request, messages.SUCCESS, 'Ticket is closed')
     return redirect('list_tickets')
@@ -125,7 +125,7 @@ def ticket_details(request, id):
             else:
                 ticket_msgs = Message.objects.create(ticket=ticket, message=ticket_messages, published_by='agent', published_at=now())
                 ticket_msgs.save()
-            send_mail(subject="Ticket #{0}: {1}".format(ticket.id, ticket.subject),
+            send_mail(subject="Ticket #00{0}: {1}".format(ticket.id, ticket.subject),
                       message="{0}\n\n\nThank you\n{1}".format(ticket_messages, ticket.accepted_by),
                       from_email=settings.EMAIL_HOST_USER, recipient_list=(ticket.created_by,))
         else:
@@ -136,7 +136,7 @@ def ticket_details(request, id):
                 ticket_msgs = Message.objects.create(ticket=ticket, message=ticket_messages, published_by='user', published_at=now())
                 ticket_msgs.save()
             #ticket_msgs = Message.objects.create(ticket=ticket, message=ticket_messages, published_by='user', published_at=now())
-            send_mail(subject="Ticket #{0}: {1}".format(ticket.id, ticket.subject),
+            send_mail(subject="Ticket #00{0}: {1}".format(ticket.id, ticket.subject),
                       message="{0}\n\n\nThank you\n{1}".format(ticket_messages, ticket.created_by),
                       from_email=settings.EMAIL_HOST_USER, recipient_list=(ticket.accepted_by,))
         #ticket_msgs.save()

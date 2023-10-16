@@ -23,13 +23,31 @@
                                 <strong>Objet :</strong>
                                 <p class="ml-4">{{ ticket_msgs.0.ticket.subject }}</p><hr>
                                 <strong>Description:</strong>
-                                <p class="ml-4">{{ ticket_msgs.0.ticket.description }}</p>
+                                <p class="ml-4">{{ ticket_msgs.0.ticket.description }}</p><hr>
+                                <strong>Status:</strong>
+                                <p class="ml-4">
+                                    {% if ticket_msgs.0.ticket.status == 1 %}
+                                    <h6 class="btn btn-secondary disabled">Non assigné</h6>
+                                    {% endif %}
+                                    {% if ticket_msgs.0.ticket.status == 2 %}
+                                            <h6 class="btn btn-warning disabled">En cours</h6>
+                                    {% endif %}
+                                    {% if ticket_msgs.0.ticket.status == 3 %}
+                                            <h6 class="btn btn-success disabled">Résolu</h6>
+                                    {% endif %}
+
+                                </p><hr>
+
                             </div>
                         </div>
                          
                       </div>
                   </div>
               </div>
+
+              
+
+
           </div>
         <div class="col-md-8 col-sm-12">
             <div class="comment-wrapper">

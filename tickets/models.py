@@ -44,10 +44,12 @@ class Ticket(models.Model):
     MASTERDIGIT=1
     KEYLASHOP=2
     GARAGEDIGIT=3
+    GFS=3
     PRODUCT_CHOICE = (
         (MASTERDIGIT, _('MASTERDIGIT')),
         (KEYLASHOP, _('KEYLASHOP')),
-        (GARAGEDIGIT, _('GARAGEDIGIT'))
+        (GARAGEDIGIT, _('GARAGEDIGIT')),
+        (GFS, _('GFS'))
     )
 
     subject = models.CharField(null=False, max_length=100, verbose_name='Subject')
