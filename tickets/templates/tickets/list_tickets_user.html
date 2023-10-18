@@ -7,6 +7,7 @@
 
 {% block 'content' %}
 
+
   <div class="container my-5">
 
     {% if messages %}
@@ -20,11 +21,13 @@
     
 
     
-
-      <a  href="{% url 'list_tickets' %}?status={{ 'all' }}"  class="btn btn-secondary" >Tous</a>
-      <a href="{% url 'list_tickets' %}?status={{ 'unassigned' }}" type="button" class="btn btn-secondary">Non assignés</a>
-      <a href="{% url 'list_tickets' %}?status={{ 'pending' }}" type="button" class="btn btn-secondary">En cours</a>
-      <a href="{% url 'list_tickets' %}?status={{ 'resolved' }}" type="button" class="btn btn-secondary">Résolus</a>
+      <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 10px;">
+        <a  href="{% url 'list_tickets' %}?status={{ 'all' }}"  class="btn btn-secondary" >Tous</a>
+        <a href="{% url 'list_tickets' %}?status={{ 'unassigned' }}" type="button" class="btn btn-secondary">Non assignés</a>
+        <a href="{% url 'list_tickets' %}?status={{ 'pending' }}" type="button" class="btn btn-secondary">En cours</a>
+        <a href="{% url 'list_tickets' %}?status={{ 'resolved' }}" type="button" class="btn btn-secondary">Résolus</a>
+      </div>
+      
       <!-- {% for ticket in tickets %}
      <div class="row my-4">
        <div class="col-lg-12 col-xl-12 mx-auto">
@@ -51,10 +54,12 @@
       </div>
       {% endfor %} -->
 
-      <div class="card card-signin flex-row justify-content-between align-items-center py-4" style="margin-top: 40px;">
+
+
+      <div class="card card-signin flex-row justify-content-between align-items-center py-4" style="margin-top: 40px; ">
         <div class="col">
-            <div class="dash-table d-none d-lg-block">
-                <div class="table-responsive-xl">
+            <div class="dash-table ">
+                <div class="table-responsive table-responsive-xl ">
                     <table class="table">
                         <thead>
                             <tr>

@@ -156,7 +156,7 @@ ticket_left h6{
 } */
 
 input[type=file]::file-selector-button {
-  margin-right: 20px;
+  margin-right: 0px;
   border: none;
   background: #46b97c;
   padding: 10px 20px;
@@ -164,6 +164,7 @@ input[type=file]::file-selector-button {
   color: #fff;
   cursor: pointer;
   transition: background .2s ease-in-out;
+  
 }
 
 input[type=file]::file-selector-button:hover {

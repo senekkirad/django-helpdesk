@@ -5,6 +5,8 @@
 
 {% block 'content' %}
 
+
+
   <div class="container my-5">
 
       <div class="row bootstrap snippets">
@@ -20,6 +22,19 @@
                                 <small>Créé par : {{ created_by.get_full_name }}</small><br>
                                 <small>Créé le : {{ticket_msgs.0.ticket.created_on|date:"d-m-y à H:i"}} </small>
                                 <br><hr>
+                                <strong>Produit concerné :</strong>
+                                {% if ticket_msgs.0.ticket.product == 1 %}
+                                    <p class="ml-4">Master Digit</p><hr>
+                                {% endif %}
+                                {% if ticket_msgs.0.ticket.product == 2 %}
+                                    <p class="ml-4">Keyla Shop</p><hr>
+                                {% endif %}
+                                {% if ticket_msgs.0.ticket.product == 3 %}
+                                    <p class="ml-4">Garage Digit</p><hr>
+                                {% endif %}
+                                {% if ticket_msgs.0.ticket.product == 4 %}
+                                    <p class="ml-4">GFS</p><hr>
+                                {% endif %}
                                 <strong>Objet :</strong>
                                 <p class="ml-4">{{ ticket_msgs.0.ticket.subject }}</p><hr>
                                 <strong>Description:</strong>

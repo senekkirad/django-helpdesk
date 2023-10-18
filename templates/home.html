@@ -1,9 +1,12 @@
 
 {% extends 'base.html' %}
-
+{% load static %}
 {% block 'title' %}HelpDesk{% endblock 'title' %}
 
- {% block 'head' %}
+ 
+
+ {% block 'content' %}
+
 
  <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
   <ol class="carousel-indicators">
@@ -14,8 +17,8 @@
   <div class="carousel-inner" style="background-color:gainsboro">
     <div class="carousel-item active" style="height: 90vh;">
       <!-- <h5>Master Digit</h5> -->
-      <img class="d-block w-100" src="https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/8-col/img%282%29.jpg" alt="First slide">
-      <div class="carousel-caption d-none d-sm-block mb-5">
+      <img class="d-block w-100" src="{% static 'img/11.jpg' %}" alt="First slide" height="55%">
+      <div class="carousel-caption  mb-5">
               <h1 class="mb-4">
                 <strong>Master Digit</strong>
               </h1>
@@ -36,8 +39,8 @@
     </div>
     <div class="carousel-item" style="height: 90vh;">
       <!-- <h5>Garage Digit</h5> -->
-      <img class="d-block w-100" src="https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/8-col/img%283%29.jpg" alt="Second slide">
-      <div class="carousel-caption d-none d-sm-block mb-5">
+      <img class="d-block w-100" src="{% static 'img/22.png' %}" alt="Second slide" height="55%">
+      <div class="carousel-caption  mb-5">
               <h1 class="mb-4">
                 <strong>Garage Digit</strong>
               </h1>
@@ -58,8 +61,8 @@
     </div>
     <div class="carousel-item" style="height: 90vh;">
       <!-- <h5>Keyla Shop</h5> -->
-      <img class="d-block w-100" src="https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/8-col/img%285%29.jpg" alt="Third slide">
-      <div class="carousel-caption d-none d-sm-block mb-5">
+      <img class="d-block w-100" src="{% static 'img/33.jpg' %}" alt="Third slide" height="55%">
+      <div class="carousel-caption  mb-5">
               <h1 class="mb-4">
                 <strong>Keyla Shop</strong>
               </h1>
@@ -80,8 +83,8 @@
     </div>
     <div class="carousel-item" style="height: 90vh;">
       <!-- <h5>Keyla Shop</h5> -->
-      <img class="d-block w-100" src="https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/8-col/img%285%29.jpg" alt="Third slide">
-      <div class="carousel-caption d-none d-sm-block mb-5">
+      <img class="d-block w-100" src="https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/8-col/img%283%29.jpg" alt="Third slide" height="55%">
+      <div class="carousel-caption  mb-5">
               <h1 class="mb-4">
                 <strong>Global Finace Software</strong>
               </h1>
@@ -115,7 +118,6 @@
             <h1 class="mt-5 font-weight-light">HelpDesk Support Portal</h1>
             <p class="lead">An interactive and digital helpdesk support portal used in IT Industry</p>
     </div> -->
-{% endblock 'head' %}
 
-{% block 'content' %}
-{% endblock 'content' %}
+
+    {% endblock 'content' %}
