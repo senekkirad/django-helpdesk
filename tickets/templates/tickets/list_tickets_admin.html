@@ -66,6 +66,7 @@
                                 <th>Date de création</th>
                                 <th class="text-end">Voir détails</th>
                                 <th class="text-end">Action</th>
+                                <th class="text-end">Assigné à</th>
                             </tr>
                         </thead>
                         <tbody class="align-middle">
@@ -125,6 +126,25 @@
                                         {% endif %}
                                         
                                     </td>
+                                    <td class="text-center">
+                                        {% if ticket.status == 1 %}
+                                                    <!-- <a class="btn btn-secondary disabled" style="color:white">Unassigned</a> -->
+                                                    <!-- <a href="{% url 'accept_ticket' ticket.id %}" class="btn btn-success" style="background-color: #17a2b8;">Accepter le ticket</a> -->
+                                                    <div>
+                                                        <select id="assignee" name="assignee">
+                                                            <option value="">Selectionnez un Agent</option>
+                                                            {% for user in staff_users %}
+                                                                <option value="{{ user.id }}">{{ user.get_full_name }}</option>
+                                                            {% endfor %}
+                                                        </select>
+                                                        <a href="#" class="btn btn-success" style="background-color: #17a2b8;" id="assign-link" data-ticket-id="{{ ticket.id }}">Assigner</a>
+                                                    </div>
+                                        {% endif %}
+                                        {% if ticket.status == 2 or ticket.status == 3 %}
+                                           {{ticket.accepted_by}}
+                                        {% endif %}
+                                        
+                                    </td>
                                 </tr>
                                  
                             {% endfor %}   
@@ -136,5 +156,32 @@
           </div>
       </div>
   </div>
+
+  <script>
+    document.getElementById('assign-link').addEventListener('click', function (e) {
+        e.preventDefault(); // Prevent the link from navigating immediately
+
+        // Get the selected option value
+        var selectedValue = document.getElementById('assignee').value;
+
+        if (selectedValue) {
+            // Get the "data-ticket-id" attribute from the clicked button
+            var ticketId = this.getAttribute('data-ticket-id');
+
+            // Build the URL with the selected value and ticket ID as parameters
+            var url = "/support/tickets/" + ticketId + "/assign/" + selectedValue;
+
+            // Navigate to the updated URL
+            window.location.href = url;
+        }
+    });
+ </script>
+
+
+
+
+
+
+
  
 {% endblock 'content' %}

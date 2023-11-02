@@ -23,35 +23,62 @@
                                 <small>Créé le : {{ticket_msgs.0.ticket.created_on|date:"d-m-y à H:i"}} </small>
                                 <br><hr>
                                 <strong>Produit concerné :</strong>
-                                {% if ticket_msgs.0.ticket.product == 1 %}
-                                    <p class="ml-4">Master Digit</p><hr>
-                                {% endif %}
-                                {% if ticket_msgs.0.ticket.product == 2 %}
-                                    <p class="ml-4">Keyla Shop</p><hr>
-                                {% endif %}
-                                {% if ticket_msgs.0.ticket.product == 3 %}
-                                    <p class="ml-4">Garage Digit</p><hr>
-                                {% endif %}
-                                {% if ticket_msgs.0.ticket.product == 4 %}
-                                    <p class="ml-4">GFS</p><hr>
-                                {% endif %}
-                                <strong>Objet :</strong>
-                                <p class="ml-4">{{ ticket_msgs.0.ticket.subject }}</p><hr>
-                                <strong>Description:</strong>
-                                <p class="ml-4">{{ ticket_msgs.0.ticket.description }}</p><hr>
-                                <strong>Status:</strong>
-                                <p class="ml-4">
-                                    {% if ticket_msgs.0.ticket.status == 1 %}
-                                    <h6 class="btn btn-secondary disabled">Non assigné</h6>
+                                    {% if ticket_msgs.0.ticket.product == 1 %}
+                                        <p class="ml-4">Master Digit</p><hr>
                                     {% endif %}
-                                    {% if ticket_msgs.0.ticket.status == 2 %}
-                                            <h6 class="btn btn-warning disabled">En cours</h6>
+                                    {% if ticket_msgs.0.ticket.product == 2 %}
+                                        <p class="ml-4">Keyla Shop</p><hr>
                                     {% endif %}
-                                    {% if ticket_msgs.0.ticket.status == 3 %}
-                                            <h6 class="btn btn-success disabled">Résolu</h6>
+                                    {% if ticket_msgs.0.ticket.product == 3 %}
+                                        <p class="ml-4">Garage Digit</p><hr>
+                                    {% endif %}
+                                    {% if ticket_msgs.0.ticket.product == 4 %}
+                                        <p class="ml-4">GFS</p><hr>
                                     {% endif %}
 
-                                </p><hr>
+                                <strong>Structure concerné :</strong>
+                                    {% if created_by.structure == 1 %}
+                                        <p class="ml-4">DADIGITALL</p><hr>
+                                    {% endif %}
+                                    {% if created_by.structure == 2 %}
+                                        <p class="ml-4">CHALLENGE DISTRIBUTION</p><hr>
+                                    {% endif %}
+                                    
+                                    
+                                    
+
+                                <strong>Objet :</strong>
+                                    <p class="ml-4">{{ ticket_msgs.0.ticket.subject }}</p><hr>
+                                <strong>Description:</strong>
+                                    <p class="ml-4">{{ ticket_msgs.0.ticket.description }}</p><hr>
+                                <strong>Status: </strong>
+                                    <div>
+                                        <span class="ml-4">
+                                            {% if ticket_msgs.0.ticket.status == 1 %}
+                                            <h6 class="btn btn-secondary disabled">Non assigné</h6>
+                                            {% endif %}
+                                            {% if ticket_msgs.0.ticket.status == 2 %}
+                                                    <h6 class="btn btn-warning disabled">En cours</h6>
+                                            {% endif %}
+                                            {% if ticket_msgs.0.ticket.status == 3 %}
+                                                    <h6 class="btn btn-success disabled">Résolu</h6>
+                                            {% endif %}
+    
+                                        </span><hr>
+                                        <!-- <span class="ml-4">
+                                            {% if ticket_msgs.0.ticket.status == 1 %}
+                                            <h6 class="btn btn-secondary disabled">Non assigné</h6>
+                                            {% endif %}
+                                            {% if ticket_msgs.0.ticket.status == 2 %}
+                                                    <h6 class="btn btn-warning disabled">En cours</h6>
+                                            {% endif %}
+                                            {% if ticket_msgs.0.ticket.status == 3 %}
+                                                    <h6 class="btn btn-success disabled">Résolu</h6>
+                                            {% endif %}
+    
+                                        </span><hr> -->
+                                    </div>
+                                    
 
                             </div>
                         </div>
@@ -84,7 +111,13 @@
                                         <span class="text-muted float-right">
                                             <small class="text-muted">{{ msg.published_at|naturaltime }}</small>
                                         </span>
+                                        <!-- <strong class="text-success">{{ created_by.get_full_name }}</strong> -->
+                                        
+                                        {% if msg.owner %}
+                                        <strong class="text-success">{{ msg.owner }}</strong>
+                                        {% else %}
                                         <strong class="text-success">{{ created_by.get_full_name }}</strong>
+                                        {% endif %}
                                         <p>
                                            {{ msg.message }}
                                         </p>
@@ -93,6 +126,7 @@
                                         {% endif %}
                                     </div>
                                 </li>
+                               
                                 {% else %}
                                 <li class="media">
                                     <a href="#" class="float-left">
@@ -102,7 +136,14 @@
                                         <span class="text-muted float-right">
                                             <small class="text-muted">{{ msg.published_at|naturaltime }}</small>
                                         </span>
+                                        
+                                        <!-- <strong class="text-success">{{ accepted_by.get_full_name }}</strong> -->
+                                        {% if msg.owner %}
+                                        <strong class="text-success">{{ msg.owner }}</strong>
+                                        {% else %}
                                         <strong class="text-success">{{ accepted_by.get_full_name }}</strong>
+                                        {% endif %}
+                                       
                                         <p>
                                            {{ msg.message }}
                                         </p>
@@ -145,7 +186,7 @@
                                         <button type="submit" class="btn btn-info float-right">Envoyer</button>
                                     </form>
                                 {% endif %}
-                            {% endif %}
+                        {% endif %}
                             <div class="clearfix"></div>
                     </div>
                     

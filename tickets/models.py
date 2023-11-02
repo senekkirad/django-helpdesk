@@ -30,16 +30,25 @@ class Ticket(models.Model):
         (Normal, _('Normal')),
         (Low, _('Low')),
     )
-    IT = 1
-    Admin =2
-    HR = 3
-    Maintenance =4
-    DEPARTMENT_CHOICES = (
-        (IT, _('IT')),
-        (Admin, _('Admin')),
-        (HR, _('HR')),
-        (Maintenance, _('Maintenance')),
-    )
+
+    # IT = 1
+    # Admin =2
+    # HR = 3
+    # Maintenance =4
+    # DEPARTMENT_CHOICES = (
+    #     (IT, _('IT')),
+    #     (Admin, _('Admin')),
+    #     (HR, _('HR')),
+    #     (Maintenance, _('Maintenance')),
+    # )
+
+    # DADIGITALL = 1
+    # CHALLENGE_DISTRIBUTION = 2
+    # STRUCTURE_CHOICES = (
+    #     (DADIGITALL, _('DADIGITALL')),
+    #     (CHALLENGE_DISTRIBUTION, _('CHALENGE DISTRIBUTION')),
+        
+    # )
 
     MASTERDIGIT=1
     KEYLASHOP=2
@@ -54,7 +63,7 @@ class Ticket(models.Model):
 
     subject = models.CharField(null=False, max_length=100, verbose_name='Subject')
     description = models.TextField(max_length=250, verbose_name='Description')
-    department = models.IntegerField(choices=DEPARTMENT_CHOICES, null=False, blank=False, verbose_name='Department')
+    #structure = models.IntegerField(choices=STRUCTURE_CHOICES, null=False, blank=False, verbose_name='Structure')
     product = models.IntegerField(choices=PRODUCT_CHOICE, null=True, blank=False, verbose_name='Produit')
     #seat_no = models.CharField(max_length=10, verbose_name='Seat No')
     created_on = models.DateTimeField(auto_now_add=True, verbose_name='Created On')
@@ -76,6 +85,7 @@ class Message(models.Model):
     ticket = models.ForeignKey(Ticket, on_delete=models.CASCADE)
     message = models.TextField(max_length=150, null=False, blank=False, verbose_name='Message')
     published_by = models.CharField(default='user', max_length=5, verbose_name='Published By')
+    owner = models.CharField( max_length=100, verbose_name='owner', null=False)
     published_at = models.DateTimeField(auto_now=True, verbose_name='Published At' )
     image=models.ImageField(null=True)
 
