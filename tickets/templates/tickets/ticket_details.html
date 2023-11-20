@@ -20,8 +20,15 @@
                             <div class="subject">
                                 <strong>Ticket N° : #00{{ ticket_msgs.0.ticket.id }}</strong> <br>
                                 <small>Créé par : {{ created_by.get_full_name }}</small><br>
-                                <small>Créé le : {{ticket_msgs.0.ticket.created_on|date:"d-m-y à H:i"}} </small>
-                                <br><hr>
+                                <small>Créé le : {{ticket_msgs.0.ticket.created_on|date:"d-m-y à H:i"}} </small><br>
+                                {% if ticket_msgs.0.ticket.status == 2 %}
+                                    <small>Assigné le : {{ticket_msgs.0.ticket.accepted_at|date:"d-m-y à H:i"}} </small><br>
+                                {% endif %}
+                                {% if ticket_msgs.0.ticket.status == 3 %}
+                                    <small>Assigné le : {{ticket_msgs.0.ticket.accepted_at|date:"d-m-y à H:i"}} </small><br>
+                                    <small>Résolu le : {{ticket_msgs.0.ticket.resolved_at|date:"d-m-y à H:i"}} </small><br>
+                                {% endif %}
+                                <hr>
                                 <strong>Produit concerné :</strong>
                                     {% if ticket_msgs.0.ticket.product == 1 %}
                                         <p class="ml-4">Master Digit</p><hr>

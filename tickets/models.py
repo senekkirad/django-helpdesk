@@ -71,7 +71,8 @@ class Ticket(models.Model):
     priority = models.IntegerField(choices=PRIORITY_CHOICES, null=False, blank=False, verbose_name='Priority')
     created_by = models.EmailField(null=False, verbose_name='Created By')
     accepted_by = models.EmailField(null=True, verbose_name='Accepted By')
-    #image=models.ImageField(null=True)
+    accepted_at = models.DateTimeField(null=True, verbose_name='Accepted On')
+    resolved_at = models.DateTimeField(null=True, verbose_name='Resolved On')
 
     class Meta:
         ordering = ('created_on',)
