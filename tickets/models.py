@@ -85,7 +85,7 @@ class Message(models.Model):
     ticket = models.ForeignKey(Ticket, on_delete=models.CASCADE)
     message = models.TextField(max_length=150, null=False, blank=False, verbose_name='Message')
     published_by = models.CharField(default='user', max_length=5, verbose_name='Published By')
-    owner = models.CharField( max_length=100, verbose_name='owner', null=False)
+    owner = models.CharField( max_length=100, verbose_name='owner', null=True)
     published_at = models.DateTimeField(auto_now=True, verbose_name='Published At' )
     image=models.ImageField(null=True)
 
